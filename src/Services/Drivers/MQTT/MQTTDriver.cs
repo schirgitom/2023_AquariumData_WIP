@@ -1,6 +1,6 @@
 ﻿using DAL.Influx;
 using DAL.MongoDB.Entities;
-using DAL.MongoDB.Entities.Devices;
+//using DAL.MongoDB.Entities.Devices;
 using MQTTnet;
 using MQTTnet.Client;
 using MQTTnet.Extensions.ManagedClient;
@@ -11,6 +11,7 @@ namespace Services.Drivers
 {
     public class MQTTDriver : Driver
     {
+        
         IManagedMqttClient Client;
 
         private MQTTDevice Source;
@@ -166,6 +167,6 @@ namespace Services.Drivers
             }
         }
 
-
+        
     }
 }

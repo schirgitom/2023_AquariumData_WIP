@@ -1,15 +1,19 @@
 ﻿using DAL.Influx;
+using DAL.Influx.Samples;
+using DAL.MongoDB.Drivers;
 using DAL.MongoDB.Entities;
-using DAL.MongoDB.Entities.Devices;
+//using DAL.MongoDB.Entities.Devices;
 using Modbus.Device;
 using Modbus.Utility;
 using System.Net.Sockets;
-using ModbusDevice = DAL.MongoDB.Entities.Devices.ModbusDevice;
+using ModbusDevice = DAL.MongoDB.Drivers.ModbusDevice;
+//using ModbusDevice = DAL.MongoDB.Entities.Devices.ModbusDevice;
 
 namespace Services.Drivers
 {
     public class ModbusDriver : Driver
     {
+        
         TcpClient Client;
         ModbusIpMaster Master;
 
@@ -22,7 +26,7 @@ namespace Services.Drivers
         System.Timers.Timer FetchTimer = new System.Timers.Timer();
 
 
-        public ModbusDriver(ModbusDevice src, List<ModbusDataPoint> datapoints) : base(src.DeviceName)
+        public ModbusDriver(ModbusDevice src, List<ModbusDataPoint> datapoints) : base(src.Name)
         {
             this.Source = src;
             ModbusDataPoints = datapoints;
@@ -252,7 +256,7 @@ namespace Services.Drivers
         }
 
 
-
+        
 
     }
 }

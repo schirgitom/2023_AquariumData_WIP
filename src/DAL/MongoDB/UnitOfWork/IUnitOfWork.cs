@@ -1,4 +1,5 @@
-﻿using DAL.MongoDB.Repository.Impl;
+﻿using DAL.MongoDB.Repository;
+using DAL.MongoDB.Repository;
 
 namespace DAL.MongoDB.UnitOfWork
 {
@@ -8,7 +9,7 @@ namespace DAL.MongoDB.UnitOfWork
 
         IDataPointRepository DataPoints { get; }
 
-        IDeviceRepository Devices { get; }
+        //IDeviceRepository Devices { get; }
 
     }
 }

@@ -1,4 +1,5 @@
 ﻿using DAL.Influx.Samples;
+using DAL.MongoDB.Entities;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;

@@ -1,6 +1,6 @@
 ﻿using DAL.Influx;
 using DAL.MongoDB.Entities;
-using DAL.MongoDB.Entities.Devices;
+//using DAL.MongoDB.Entities.Devices;
 using DAL.MongoDB.UnitOfWork;
 using Serilog;
 using Services.Drivers;
@@ -11,6 +11,7 @@ namespace Services
 {
     public class ServiceStart
     {
+        /*
         protected ILogger log = Logger.ContextLog<ServiceStart>();
         IUnitOfWork UnitOfWork = null;
         IInfluxUnitOfWork InfluxUnitOfWork = null;
@@ -97,5 +98,6 @@ namespace Services
             }
 
         }
+        */
     }
 }

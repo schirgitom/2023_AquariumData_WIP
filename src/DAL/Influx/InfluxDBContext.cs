@@ -21,6 +21,7 @@ namespace DAL.Influx
         public String Organisation { get; private set; }
 
         public QueryApi QueryAPI { get; private set; }
+        public BucketsApi BucketsAPI { get; private set; }
 
         public WriteApiAsync WriteAPI { get; private set; }
 

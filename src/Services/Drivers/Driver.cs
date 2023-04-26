@@ -1,4 +1,5 @@
 ﻿using DAL.Influx;
+using DAL.Influx.Samples;
 using DAL.MongoDB.Entities;
 using Serilog;
 using System.Collections.Concurrent;

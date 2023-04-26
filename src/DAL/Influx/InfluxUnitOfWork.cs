@@ -20,7 +20,7 @@ namespace DAL.Influx
 
         public InfluxUnitOfWork()
         {
-            var builder = new ConfigurationBuilder().SetBasePath(Constants.CurrentFolder).AddJsonFile("DataSettings/appsettings.json");
+            var builder = new ConfigurationBuilder().SetBasePath(Constants.CurrentFolder).AddJsonFile("appsettings.json");
 
             InfluxDBSettings settings = builder.Build().GetSection("InfluxDbSettings").Get<InfluxDBSettings>();
             InfluxDBContext context = new InfluxDBContext(settings);
