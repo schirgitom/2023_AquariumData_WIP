@@ -1,6 +1,6 @@
-﻿using DAL.Influx;
+﻿using DAL.Influx.Samples;
 using DAL.MongoDB.Entities;
-//using DAL.MongoDB.Entities.Devices;
+using DAL.MongoDB.Entities.Devices;
 using MQTTnet;
 using MQTTnet.Client;
 using MQTTnet.Extensions.ManagedClient;
@@ -11,13 +11,12 @@ namespace Services.Drivers
 {
     public class MQTTDriver : Driver
     {
-        
         IManagedMqttClient Client;
 
         private MQTTDevice Source;
         String FinalUrl;
         List<MQTTDataPoint> MQTTDataPoints = new List<MQTTDataPoint>();
-        public MQTTDriver(MQTTDevice src, List<MQTTDataPoint> datapoints) : base(src.DeviceName)
+        public MQTTDriver(MQTTDevice src, List<MQTTDataPoint> datapoints) : base(src.Name)
         {
             this.Source = src;
             this.MQTTDataPoints = datapoints;
@@ -27,6 +26,7 @@ namespace Services.Drivers
         {
             log.Information("Created Client - trying to connect to " + FinalUrl);
 
+            FinalUrl = Source.Host + ":" + Source.Port;
 
             MqttFactory mqttFactory = new MqttFactory();
             Client = mqttFactory.CreateManagedMqttClient();
@@ -37,7 +37,7 @@ namespace Services.Drivers
 
             var mqttClientOptions = new MqttClientOptionsBuilder()
                .WithTcpServer(Source.Host, Source.Port)
-               .WithClientId(Source.DeviceName)
+               .WithClientId(Source.Name)
                .Build();
 
 
@@ -110,7 +110,7 @@ namespace Services.Drivers
                         {
                             sample = new NumericSample();
                             float val = (float)(Convert.ToDouble(converted.Value) / dp.Offset);
-                            sample.Value = dp;
+                            sample.Value = val;
                         }
                         else
                         {
@@ -120,7 +120,7 @@ namespace Services.Drivers
 
                         //https://www.epochconverter.com/
 
-                        sample.TimeStamp = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc).AddSeconds(converted.TimeStamp);
+                        sample.Timestamp = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc).AddSeconds(converted.TimeStamp);
 
                         sample.Tag = dp.Name;
 
@@ -167,6 +167,6 @@ namespace Services.Drivers
             }
         }
 
-        
+
     }
 }
